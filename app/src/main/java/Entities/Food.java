@@ -1,5 +1,6 @@
 package Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Food {
@@ -14,6 +15,8 @@ public class Food {
     }
 
     public Food() {
+        this.intolerances = new ArrayList<>();
+        this.favorites = new ArrayList<>();
         this.feedingSchedule = new FeedingSchedule();
     }
 

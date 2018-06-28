@@ -21,6 +21,9 @@ public class Baby {
         this.dadName = dadName;
         this.momName = momName;
         this.birthday = birthday;
+        this.healthInfo = new Health();
+        this.foodInfo = new Food();
+        this.journal = new Journal();
     }
 
     public Baby(String name, String dadName, String momName, Date birthday, Health healthInfo, Food foodInfo) {
@@ -30,6 +33,7 @@ public class Baby {
         this.birthday = birthday;
         this.healthInfo = healthInfo;
         this.foodInfo = foodInfo;
+        this.journal = new Journal();
     }
 
     public String getName() {

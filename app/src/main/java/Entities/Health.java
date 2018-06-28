@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +30,19 @@ public class Health {
         this.currentDiseases = currentDiseases;
         this.vaccines = vaccines;
         this.medicalAppointments = medicalAppointments;
+        this.description = "";
+        this.sleepList = new ArrayList<>();
+        this.diaperList = new ArrayList<>();
+    }
+
+    public Health() {
+        this.pastDiseases = new HashMap<>();
+        this.currentDiseases = new ArrayList<>();
+        this.vaccines = new ArrayList<>();
+        this.medicalAppointments = new ArrayList<>();
+        this.description = "";
+        this.sleepList = new ArrayList<>();
+        this.diaperList = new ArrayList<>();
     }
 
     public void addCurrentDisease(String disease) {

@@ -4,36 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage">
+    tools:context=".HomePage"
+    tools:layout_editor_absoluteY="81dp">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <TextView
+        android:id="@+id/birthdayTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="215dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="43dp"
+        android:layout_marginStart="36dp"
+        android:text="Birthday:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/birthday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTag" />
+
+    <ImageView
+        android:id="@+id/profilePic"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="37dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="18dp"
+        android:contentDescription="@string/baby_picture"
+        app:layout_constraintBottom_toTopOf="@+id/nameTag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/baby" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <TextView
+        android:id="@+id/nameTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="59dp"
+        android:layout_marginStart="35dp"
+        android:text="Name:"
+        app:layout_constraintBottom_toTopOf="@+id/birthdayTag"
+        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePic" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="16dp" />
-        </LinearLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:text="none"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nameTag"
+        app:layout_constraintTop_toTopOf="@+id/nameTag" />
 
+    <TextView
+        android:id="@+id/birthday"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginRight="103dp"
+        android:layout_marginTop="23dp"
+        android:text="bday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/birthdayTag"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 </android.support.constraint.ConstraintLayout>
