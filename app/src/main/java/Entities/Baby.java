@@ -8,6 +8,8 @@ import java.util.Objects;
 
 public class Baby {
     private String name;
+    private double weight;
+    private double height;
     private String dadName;
     private String momName;
     private Date birthday;
@@ -16,8 +18,10 @@ public class Baby {
     private Journal journal;
     private Image profilePicture;
 
-    public Baby(String name, String dadName, String momName, Date birthday) {
+    public Baby(String name, String dadName, String momName,double height, double weight, Date birthday) {
         this.name = name;
+        this.height = height;
+        this.weight = weight;
         this.dadName = dadName;
         this.momName = momName;
         this.birthday = birthday;
@@ -26,10 +30,12 @@ public class Baby {
         this.journal = new Journal();
     }
 
-    public Baby(String name, String dadName, String momName, Date birthday, Health healthInfo, Food foodInfo) {
+    public Baby(String name, String dadName, String momName,double height, double weight, Date birthday, Health healthInfo, Food foodInfo) {
         this.name = name;
         this.dadName = dadName;
         this.momName = momName;
+        this.height = height;
+        this.weight = weight;
         this.birthday = birthday;
         this.healthInfo = healthInfo;
         this.foodInfo = foodInfo;
@@ -100,6 +106,22 @@ public class Baby {
         this.profilePicture = profilePicture;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
     @SuppressLint("NewApi")
     @Override
     public boolean equals(Object o) {
@@ -125,9 +147,15 @@ public class Baby {
     public String toString() {
         return "Baby{" +
                 "name='" + name + '\'' +
+                ", weight=" + weight +
+                ", height=" + height +
                 ", dadName='" + dadName + '\'' +
                 ", momName='" + momName + '\'' +
                 ", birthday=" + birthday +
+                ", healthInfo=" + healthInfo +
+                ", foodInfo=" + foodInfo +
+                ", journal=" + journal +
+                ", profilePicture=" + profilePicture +
                 '}';
     }
 }

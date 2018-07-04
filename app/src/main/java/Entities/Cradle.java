@@ -1,21 +1,13 @@
 package Entities;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Entity;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +22,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import artech.cradle.R;
 
 public class Cradle {
 
@@ -80,6 +71,16 @@ public class Cradle {
                 Element momName = doc.createElement("momName");
                 momName.appendChild(doc.createTextNode(b.getMomName()));
                 baby.appendChild(momName);
+
+                //height
+                Element height = doc.createElement("momName");
+                height.appendChild(doc.createTextNode(Double.toString(b.getHeight())));
+                baby.appendChild(height);
+
+                //mom name
+                Element weight = doc.createElement("weight");
+                height.appendChild(doc.createTextNode(Double.toString(b.getWeight())));
+                baby.appendChild(weight);
 
                 //birthday
                 Element birthday = doc.createElement("birthday");
@@ -253,7 +254,7 @@ public class Cradle {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(context.getFilesDir().getPath()+"\\cradle.xml"));
+            StreamResult result = new StreamResult(new File(context.getFilesDir().getPath()+"/cradle.xml"));
 
             // Output to console for testing
             StreamResult resultConsole = new StreamResult(System.out);
@@ -271,5 +272,45 @@ public class Cradle {
         } catch (TransformerException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadCradle() {
+
+        try {
+            File fXmlFile = new File(context.getFilesDir().getPath()+"/cradle.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = null;
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+
+            NodeList nList = doc.getElementsByTagName("Baby");
+
+            System.out.println("----------------------------");
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    System.out.println("Baby name: " + eElement.getElementsByTagName("name").item(0).getTextContent());
+
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

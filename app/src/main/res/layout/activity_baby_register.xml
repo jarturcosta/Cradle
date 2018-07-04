@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="artech.cradle.BabyRegister"
+    tools:layout_editor_absoluteY="81dp">
+
+    <EditText
+        android:id="@+id/weight"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="71dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="71dp"
+        android:ems="10"
+        android:hint="Weight"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/profilePicAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <EditText
+        android:id="@+id/height"
+        android:layout_width="0dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="157dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="155dp"
+        android:ems="10"
+        android:hint="Height"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/babyPic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="54dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="66dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleAdd" />
+
+    <TextView
+        android:id="@+id/titleAdd"
+        android:layout_width="173dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="36dp"
+        android:text="Add a new baby"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/babyPic"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:text="Profile Picture"
+        app:layout_constraintBottom_toBottomOf="@+id/profilePicAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profilePicAdd" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/profilePicAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="151dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:clickable="true"
+        android:tint="@android:color/background_light"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/babyPic"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
+        tools:ignore="VectorDrawableCompat" />
+
+    <EditText
+        android:id="@+id/birthday"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="14dp"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Birthday"
+        android:inputType="date"
+        android:onClick="setDate"
+        app:layout_constraintBottom_toTopOf="@+id/profilePicAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/save"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
+
+</android.support.constraint.ConstraintLayout>
