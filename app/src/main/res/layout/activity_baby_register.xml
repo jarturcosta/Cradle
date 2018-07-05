@@ -11,25 +11,24 @@
         android:id="@+id/weight"
         android:layout_width="0dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="71dp"
+        android:layout_marginBottom="136dp"
         android:layout_marginEnd="23dp"
         android:layout_marginLeft="23dp"
         android:layout_marginRight="23dp"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="136dp"
         android:ems="10"
         android:hint="Weight"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/profilePicAdd"
+        app:layout_constraintBottom_toTopOf="@+id/babyPic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/titleAdd" />
 
     <EditText
         android:id="@+id/height"
         android:layout_width="0dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="157dp"
         android:layout_marginEnd="23dp"
         android:layout_marginLeft="23dp"
         android:layout_marginRight="23dp"
@@ -38,7 +37,6 @@
         android:ems="10"
         android:hint="Height"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="@+id/babyPic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -87,14 +85,14 @@
         android:id="@+id/profilePicAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="151dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="18dp"
         android:clickable="true"
         android:tint="@android:color/background_light"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/babyPic"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:srcCompat="@android:drawable/ic_menu_gallery"
         tools:ignore="VectorDrawableCompat" />
 
@@ -102,22 +100,22 @@
         android:id="@+id/birthday"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="53dp"
         android:layout_marginEnd="22dp"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="53dp"
         android:clickable="true"
         android:ems="10"
         android:focusable="false"
         android:hint="Birthday"
         android:inputType="date"
         android:onClick="setDate"
-        app:layout_constraintBottom_toTopOf="@+id/profilePicAdd"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weight" />
+        app:layout_constraintTop_toTopOf="@+id/weight" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/save"
@@ -130,6 +128,33 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <Switch
+        android:id="@+id/gender"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="146dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="144dp"
+        android:text="Male"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/birthday"
+        app:layout_constraintTop_toBottomOf="@+id/height" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:text="Female"
+        android:textColor="#000000"
+        app:layout_constraintBaseline_toBaselineOf="@+id/gender"
+        app:layout_constraintEnd_toEndOf="@+id/profilePicAdd" />
 
 
 </android.support.constraint.ConstraintLayout>

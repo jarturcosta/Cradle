@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -24,6 +25,7 @@ import java.util.Date;
 
 import Entities.Baby;
 import Entities.Cradle;
+import Entities.Gender;
 import artech.cradle.R;
 
 public class Home extends AppCompatActivity
@@ -42,6 +44,7 @@ public class Home extends AppCompatActivity
             public void onClick(View view) {
                 Intent k = new Intent(Home.this, BabyRegister.class);
                 startActivity(k);
+                finish();
             }
         });
 
@@ -54,29 +57,23 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Baby creation test
         Cradle cradle = new Cradle(getApplicationContext());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date bday = new Date();
-        try {
-            bday = sdf.parse("12/11/2017");
-        } catch (ParseException e) {
-            e.printStackTrace();
+        cradle.loadCradle();
+
+        if(!cradle.getBabyList().isEmpty()) {
+            ImageView img = findViewById(R.id.babyPic);
+            img.setVisibility(View.VISIBLE);
+            TextView age = findViewById(R.id.age);
+            age.setVisibility(View.VISIBLE);
+            TextView name = findViewById(R.id.name);
+            Baby bb1 = cradle.getBabyList().get(cradle.getBabyList().size()-1);
+            name.setText(bb1.getName());
+            age.setText(dateDifference(bb1.getBirthday(),new Date()));
         }
-        Baby bb1 = new Baby("Joaquim Silva", "Arnaldo Silva", "Maria Paredes",40.2,4.231, bday);
-        cradle.addBaby(bb1);
 
-        TextView name = findViewById(R.id.name);
-        name.setText(bb1.getName());
-
-        //SimpleDateFormat bdayFormat = new SimpleDateFormat("MMMM dd yyyy");
-        TextView age = findViewById(R.id.age);
-
-        age.setText(dateDifference(bb1.getBirthday(),new Date()));
-
-        cradle.saveCradle();
 
     }
+
 
     public static String dateDifference(Date from, Date to) {
         Calendar fromDate= Calendar.getInstance();

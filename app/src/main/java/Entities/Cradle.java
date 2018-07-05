@@ -8,7 +8,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +64,11 @@ public class Cradle {
                 name.appendChild(doc.createTextNode(b.getName()));
                 baby.appendChild(name);
 
+                //gender
+                Element gender = doc.createElement("gender");
+                gender.appendChild(doc.createTextNode(b.getGender().name()));
+                baby.appendChild(gender);
+
                 //dad name
                 Element dadName = doc.createElement("dadName");
                 dadName.appendChild(doc.createTextNode(b.getDadName()));
@@ -73,18 +80,19 @@ public class Cradle {
                 baby.appendChild(momName);
 
                 //height
-                Element height = doc.createElement("momName");
+                Element height = doc.createElement("height");
                 height.appendChild(doc.createTextNode(Double.toString(b.getHeight())));
                 baby.appendChild(height);
 
-                //mom name
+                //weight
                 Element weight = doc.createElement("weight");
-                height.appendChild(doc.createTextNode(Double.toString(b.getWeight())));
+                weight.appendChild(doc.createTextNode(Double.toString(b.getWeight())));
                 baby.appendChild(weight);
 
                 //birthday
                 Element birthday = doc.createElement("birthday");
-                birthday.appendChild(doc.createTextNode(b.getBirthday().toString()));
+                SimpleDateFormat spf = new SimpleDateFormat("dd/MM/yyyy");
+                birthday.appendChild(doc.createTextNode(spf.format(b.getBirthday())));
                 baby.appendChild(birthday);
 
                 //health
@@ -275,8 +283,8 @@ public class Cradle {
     }
 
     public void loadCradle() {
-
         try {
+            babyList.clear();
             File fXmlFile = new File(context.getFilesDir().getPath()+"/cradle.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = null;
@@ -299,9 +307,21 @@ public class Cradle {
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-                    Element eElement = (Element) nNode;
+                    Element e = (Element) nNode;
+                    String id = e.getAttribute("id");
+                    String name = e.getElementsByTagName("name").item(0).getTextContent();
+                    System.out.println(name);
+                    Gender gender = Gender.valueOf(e.getElementsByTagName("gender").item(0).getTextContent());
+                    String dadName = e.getElementsByTagName("dadName").item(0).getTextContent();
+                    String momName = e.getElementsByTagName("momName").item(0).getTextContent();
+                    Double height = Double.parseDouble(e.getElementsByTagName("height").item(0).getTextContent());
+                    Double weight = Double.parseDouble(e.getElementsByTagName("weight").item(0).getTextContent());
+                    SimpleDateFormat spf = new SimpleDateFormat("dd/MM/yyyy");
+                    Date birthday = spf.parse(e.getElementsByTagName("birthday").item(0).getTextContent());
 
-                    System.out.println("Baby name: " + eElement.getElementsByTagName("name").item(0).getTextContent());
+                    Baby bb = new Baby(name,gender,dadName,momName,height,weight,birthday);
+                    this.addBaby(bb);
+                    System.out.println("loaded: " + bb.toString());
 
                 }
             }
@@ -311,6 +331,18 @@ public class Cradle {
             e.printStackTrace();
         }
 
+    }
 
+    public Baby getBabyByName(String name) {
+        for(Baby b: babyList) {
+            if(b.getName().equals(name)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public List<Baby> getBabyList() {
+        return babyList;
     }
 }

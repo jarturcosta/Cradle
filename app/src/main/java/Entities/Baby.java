@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class Baby {
     private String name;
+    private Gender gender;
     private double weight;
     private double height;
     private String dadName;
@@ -17,6 +18,19 @@ public class Baby {
     private Food foodInfo;
     private Journal journal;
     private Image profilePicture;
+
+    public Baby(String name, Gender gender, String dadName, String momName,double height, double weight, Date birthday) {
+        this.name = name;
+        this.gender = gender;
+        this.height = height;
+        this.weight = weight;
+        this.dadName = dadName;
+        this.momName = momName;
+        this.birthday = birthday;
+        this.healthInfo = new Health();
+        this.foodInfo = new Food();
+        this.journal = new Journal();
+    }
 
     public Baby(String name, String dadName, String momName,double height, double weight, Date birthday) {
         this.name = name;
@@ -30,8 +44,10 @@ public class Baby {
         this.journal = new Journal();
     }
 
-    public Baby(String name, String dadName, String momName,double height, double weight, Date birthday, Health healthInfo, Food foodInfo) {
+
+    public Baby(String name, Gender gender, String dadName, String momName, double height, double weight, Date birthday, Health healthInfo, Food foodInfo) {
         this.name = name;
+        this.gender = gender;
         this.dadName = dadName;
         this.momName = momName;
         this.height = height;
@@ -122,31 +138,45 @@ public class Baby {
         this.height = height;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     @SuppressLint("NewApi")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Baby baby = (Baby) o;
-        return birthday == baby.birthday &&
+        return Double.compare(baby.weight, weight) == 0 &&
+                Double.compare(baby.height, height) == 0 &&
                 Objects.equals(name, baby.name) &&
+                gender == baby.gender &&
                 Objects.equals(dadName, baby.dadName) &&
                 Objects.equals(momName, baby.momName) &&
+                Objects.equals(birthday, baby.birthday) &&
                 Objects.equals(healthInfo, baby.healthInfo) &&
                 Objects.equals(foodInfo, baby.foodInfo) &&
-                Objects.equals(journal, baby.journal);
+                Objects.equals(journal, baby.journal) &&
+                Objects.equals(profilePicture, baby.profilePicture);
     }
 
     @SuppressLint("NewApi")
     @Override
     public int hashCode() {
-        return Objects.hash(name, dadName, momName, birthday, healthInfo, foodInfo, journal);
+
+        return Objects.hash(name, gender, weight, height, dadName, momName, birthday, healthInfo, foodInfo, journal, profilePicture);
     }
 
     @Override
     public String toString() {
         return "Baby{" +
                 "name='" + name + '\'' +
+                ", gender=" + gender +
                 ", weight=" + weight +
                 ", height=" + height +
                 ", dadName='" + dadName + '\'' +

@@ -4,12 +4,15 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ import java.util.Date;
 
 import Entities.Baby;
 import Entities.Cradle;
+import Entities.Gender;
 
 public class BabyRegister extends AppCompatActivity {
     private DatePicker datePicker;
@@ -44,10 +48,16 @@ public class BabyRegister extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Cradle cradle = new Cradle(getApplicationContext());
+                cradle.loadCradle();
                 TextView tvName = findViewById(R.id.name);
                 TextView tvHeight = findViewById(R.id.height);
                 TextView tvBDay = findViewById(R.id.birthday);
                 TextView tvWeight = findViewById(R.id.weight);
+                Switch swGender = findViewById(R.id.gender);
+                Gender gender = Gender.MALE;
+                if(swGender.isChecked()) {
+                    gender = Gender.FEMALE;
+                }
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date bday = new Date();
                 try {
@@ -56,19 +66,18 @@ public class BabyRegister extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Baby bb = new Baby(tvName.getText().toString(), "José", "Maria", Double.parseDouble(tvHeight.getText().toString()), Double.parseDouble(tvWeight.getText().toString()),bday);
+                Baby bb = new Baby(tvName.getText().toString(),gender, "José", "Maria", Double.parseDouble(tvHeight.getText().toString()), Double.parseDouble(tvWeight.getText().toString()),bday);
                 cradle.addBaby(bb);
                 cradle.saveCradle();
 
-                Toast.makeText(getApplicationContext(), //Context
-                        "Baby saved!", // Message to display
-                        Toast.LENGTH_SHORT // Duration of the message, another possible value is Toast.LENGTH_LONG
-                ).show(); //Finally Show the toast
+                Toast.makeText(getApplicationContext(),"Baby saved!", Toast.LENGTH_SHORT).show();
                 cradle.loadCradle();
             }
         });
 
     }
+
+
 
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
@@ -103,6 +112,10 @@ public class BabyRegister extends AppCompatActivity {
                 .append(month).append("/").append(year));
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent k = new Intent(this, Home.class);
+        startActivity(k);
+    }
 
 }
