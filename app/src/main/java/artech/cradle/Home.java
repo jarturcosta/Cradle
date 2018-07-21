@@ -31,12 +31,29 @@ import artech.cradle.R;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static Baby selectedBaby;
+    private static Cradle cradle;
+
+    public static Baby getSelectedBaby() {
+        return selectedBaby;
+    }
+
+    public static void setSelectedBaby(Cradle cradle, String babyName) {
+        for(Baby b: cradle.getBabyList()) {
+            if(b.getName().equals(babyName)) {
+                selectedBaby = b;
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,13 +77,28 @@ public class Home extends AppCompatActivity
         Cradle cradle = new Cradle(getApplicationContext());
         cradle.loadCradle();
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            setSelectedBaby(cradle, cradle.getBabyList().get(bundle.getInt("selectedBabyPos")).getName());
+        }
+
+
         if(!cradle.getBabyList().isEmpty()) {
-            ImageView img = findViewById(R.id.babyPic);
-            img.setVisibility(View.VISIBLE);
+
             TextView age = findViewById(R.id.age);
             age.setVisibility(View.VISIBLE);
             TextView name = findViewById(R.id.name);
-            Baby bb1 = cradle.getBabyList().get(cradle.getBabyList().size()-1);
+            if(selectedBaby == null) {
+                selectedBaby = cradle.getBabyList().get(cradle.getBabyList().size()-1);
+            }
+            ImageView img = findViewById(R.id.babyPic);
+            if (selectedBaby.getGender().equals(Gender.FEMALE)) {
+                img.setImageResource(R.mipmap.baby_f);
+            } else {
+                img.setImageResource(R.mipmap.baby_m);
+            }
+            img.setVisibility(View.VISIBLE);
+            Baby bb1 = selectedBaby;
             name.setText(bb1.getName());
             age.setText(dateDifference(bb1.getBirthday(),new Date()));
         }
@@ -148,18 +180,10 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_babies) {
+            Intent k = new Intent(this, BabyListing.class);
+            startActivity(k);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
