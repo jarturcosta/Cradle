@@ -4,14 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,10 +46,10 @@ public class BabyRegister extends AppCompatActivity {
             public void onClick(View view) {
                 Cradle cradle = new Cradle(getApplicationContext());
                 cradle.loadCradle();
-                TextView tvName = findViewById(R.id.name);
+                TextView tvName = findViewById(R.id.name_stats);
                 TextView tvHeight = findViewById(R.id.height);
                 TextView tvBDay = findViewById(R.id.birthday);
-                TextView tvWeight = findViewById(R.id.weight);
+                TextView tvWeight = findViewById(R.id.mothers_name);
                 Switch swGender = findViewById(R.id.gender);
                 Gender gender = Gender.MALE;
                 if(swGender.isChecked()) {
@@ -67,6 +64,15 @@ public class BabyRegister extends AppCompatActivity {
                 }
 
                 Baby bb = new Baby(tvName.getText().toString(),gender, "José", "Maria", Double.parseDouble(tvHeight.getText().toString()), Double.parseDouble(tvWeight.getText().toString()),bday);
+                ImageView img = new ImageView(getApplicationContext());
+
+                if(bb.getGender().equals(Gender.FEMALE)) {
+                    img.setImageResource(R.mipmap.baby_f);
+                } else {
+                    img.setImageResource(R.mipmap.baby_m);
+                }
+
+
                 cradle.addBaby(bb);
                 cradle.saveCradle();
 

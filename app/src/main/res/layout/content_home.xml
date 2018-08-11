@@ -16,14 +16,14 @@
         android:layout_marginBottom="24dp"
         android:layout_marginTop="60dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name"
+        app:layout_constraintBottom_toTopOf="@+id/name_stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/baby" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/name_stats"
         android:layout_width="255dp"
         android:layout_height="36dp"
         android:layout_marginBottom="12dp"
@@ -31,13 +31,13 @@
         android:text="No babies!"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/age"
+        app:layout_constraintBottom_toTopOf="@+id/age_stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/babyPic" />
 
     <TextView
-        android:id="@+id/age"
+        android:id="@+id/age_stats"
         android:layout_width="198dp"
         android:layout_height="35dp"
         android:layout_marginBottom="163dp"
@@ -47,5 +47,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/name_stats" />
 </android.support.constraint.ConstraintLayout>

@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <EditText
-        android:id="@+id/weight"
+        android:id="@+id/mothers_name"
         android:layout_width="0dp"
         android:layout_height="38dp"
         android:layout_marginBottom="58dp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/name_stats"
         android:layout_width="0dp"
         android:layout_height="38dp"
         android:layout_marginBottom="56dp"
@@ -140,8 +140,8 @@
         android:text="Male"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profilePicAdd"
-        app:layout_constraintStart_toStartOf="@+id/weight"
-        app:layout_constraintTop_toTopOf="@+id/weight" />
+        app:layout_constraintStart_toStartOf="@+id/mothers_name"
+        app:layout_constraintTop_toTopOf="@+id/mothers_name" />
 
     <TextView
         android:id="@+id/textView3"

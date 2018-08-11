@@ -1,7 +1,9 @@
 package Entities;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.media.Image;
+import android.widget.ImageView;
 
 import java.util.Date;
 import java.util.Objects;
@@ -17,7 +19,7 @@ public class Baby {
     private Health healthInfo;
     private Food foodInfo;
     private Journal journal;
-    private Image profilePicture;
+    private ImageView profilePicture;
 
     public Baby(String name, Gender gender, String dadName, String momName,double height, double weight, Date birthday) {
         this.name = name;
@@ -114,11 +116,11 @@ public class Baby {
         this.journal = journal;
     }
 
-    public Image getProfilePicture() {
+    public ImageView getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(Image profilePicture) {
+    public void setProfilePicture(ImageView profilePicture) {
         this.profilePicture = profilePicture;
     }
 

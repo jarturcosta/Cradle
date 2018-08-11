@@ -4,10 +4,18 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_baby_stats"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Baby" />
+
         <item
             android:id="@+id/nav_babies"
             android:icon="@drawable/ic_menu_baby"
             android:title="Baby list" />
+
+
 
     </group>
 

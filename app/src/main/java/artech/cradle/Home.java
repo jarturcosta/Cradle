@@ -3,7 +3,6 @@ package artech.cradle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,23 +15,19 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
 import java.util.Calendar;
 import java.util.Date;
 
 import Entities.Baby;
 import Entities.Cradle;
 import Entities.Gender;
-import artech.cradle.R;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static Baby selectedBaby;
     private static Cradle cradle;
+    private int position = 0;
 
     public static Baby getSelectedBaby() {
         return selectedBaby;
@@ -74,20 +69,22 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Cradle cradle = new Cradle(getApplicationContext());
-        cradle.loadCradle();
+        this.cradle = new Cradle(getApplicationContext());
+        this.cradle.loadCradle();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            setSelectedBaby(cradle, cradle.getBabyList().get(bundle.getInt("selectedBabyPos")).getName());
+            setSelectedBaby(cradle, cradle.getBabyList().get(position).getName());
+            this.position = bundle.getInt("selectedBabyPos");
+
         }
 
 
         if(!cradle.getBabyList().isEmpty()) {
 
-            TextView age = findViewById(R.id.age);
+            TextView age = findViewById(R.id.age_stats);
             age.setVisibility(View.VISIBLE);
-            TextView name = findViewById(R.id.name);
+            TextView name = findViewById(R.id.name_stats);
             if(selectedBaby == null) {
                 selectedBaby = cradle.getBabyList().get(cradle.getBabyList().size()-1);
             }
@@ -180,8 +177,21 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_babies) {
             Intent k = new Intent(this, BabyListing.class);
+            startActivity(k);
+            finish();
+        }
+
+        else if (id == R.id.nav_baby_stats) {
+            Intent k = new Intent (this, BabyStats.class);
+            Bundle bundle = new Bundle();
+            cradle.loadCradle();
+
+            bundle.putInt("selectedBabyPos",position);
+            k.putExtras(bundle);
+
             startActivity(k);
             finish();
         }
